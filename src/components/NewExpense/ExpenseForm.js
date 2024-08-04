@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  const [userInput, setUserInput] = useState({
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate: "",
+  });
 
-  const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
-
-  const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
-  };
-
-  const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+  const inputChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setUserInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
@@ -23,15 +21,32 @@ const ExpenseForm = () => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="title">Title</label>
-          <input type="text" id="title" onChange={titleChangeHandler} />
+          <input
+            type="text"
+            id="title"
+            name="enteredTitle"
+            onChange={inputChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label htmlFor="amount">Amount</label>
-          <input type="number"  id="amount" onChange={amountChangeHandler}/>
+          <input
+            type="number"
+            id="amount"
+            name="enteredAmount"
+            onChange={inputChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label htmlFor="date">Date</label>
-          <input  type="date" id="date" min="2023-01-01"  max="2024-12-31"onChange={dateChangeHandler}/>
+          <input
+            type="date"
+            id="date"
+            name="enteredDate"
+            min="2023-01-01"
+            max="2024-12-31"
+            onChange={inputChangeHandler}
+          />
         </div>
       </div>
       <div className="new-expense__actions">
