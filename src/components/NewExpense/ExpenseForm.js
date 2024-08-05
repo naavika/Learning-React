@@ -1,3 +1,5 @@
+// Write your code at relevant places in the code below:
+
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
@@ -8,12 +10,31 @@ const ExpenseForm = () => {
     enteredDate: "",
   });
 
-  const inputChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setUserInput((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const titleChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        enteredTitle: event.target.value,
+      };
+    });
+  };
+
+  const amountChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        enteredTitle: event.target.value,
+      };
+    });
+  };
+
+  const dateChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        enteredTitle: event.target.value,
+      };
+    });
   };
 
   return (
@@ -21,31 +42,20 @@ const ExpenseForm = () => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            name="enteredTitle"
-            onChange={inputChangeHandler}
-          />
+          <input type="text" id="title" onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
           <label htmlFor="amount">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            name="enteredAmount"
-            onChange={inputChangeHandler}
-          />
+          <input type="number" id="amount" onChange={amountChangeHandler} />
         </div>
         <div className="new-expense__control">
           <label htmlFor="date">Date</label>
           <input
             type="date"
             id="date"
-            name="enteredDate"
             min="2023-01-01"
             max="2024-12-31"
-            onChange={inputChangeHandler}
+            onChange={dateChangeHandler}
           />
         </div>
       </div>
